@@ -91,6 +91,10 @@ def metadata(func):
     @functools.wraps(func)
     def decorator(self, *args, **kwargs):
         eitem = func(self, *args, **kwargs)
+
+        if not eitem:
+            return eitem
+
         metadata = {
             'metadata__gelk_version': self.gelk_version,
             'metadata__gelk_backend_name': self.__class__.__name__,
